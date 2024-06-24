@@ -1,5 +1,3 @@
-package Recursion.basics & mazePath;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -178,280 +176,282 @@ public class L001 {
         subsequence2(str, index + 1, ans + ch);
     }
     // ----------------
-    // static String dirs[] = { "H", "V", "D" };
-    // static int dirsA[][] = { { 0, 1 }, { 1, 0 }, { 1, 1 } };
+    static String dirS[] = { "H", "V", "D" };
+    static int dirsA[][] = { { 0, 1 }, { 1, 0 }, { 1, 1 } };
 
-    // public static void MazePath(int sr, int sc, int er, int ec, String ans,
-    // int[][] m) {
-    // if (sr == er && sc == ec) {
-    // System.out.println(ans);
-    // return;
-    // }
-    // for (int i = 0; i < dirs.length; i++) {
-    // int r = sr + dirsA[i][0];
-    // int c = sc + dirsA[i][1];
+    public static void MazePath(int sr, int sc, int er, int ec, String ans,
+    int[][] m) {
+    if (sr == er && sc == ec) {
+    System.out.println(ans);
+    return;
+    }
+    for (int i = 0; i < dirs.length; i++) {
+    int r = sr + dirsA[i][0];
+    int c = sc + dirsA[i][1];
 
-    // if (r >= 0 && c >= 0 && r <= er && c <= ec) {
-    // if (m[r][c] != 0) {
+    if (r >= 0 && c >= 0 && r <= er && c <= ec) {
+    if (m[r][c] != 0) {
 
-    // MazePath(r, c, er, ec, ans + dirs[i],m);
-    // }
+    MazePath(r, c, er, ec, ans + dirs[i],m);
+    }
 
-    // }
-    // }
-    // }
+    }
+    }
+    }
     // ----------------
-    // static String dirs[] = {"N","ne","E","es","S","ws","W","nw"};
-    // static int dirA[][] = {{-1,0},{-1,1},
-    // {0,1},{1,1},{1,0},{1,-1},{0,-1},{-1,-1}};
-    // public static void mazePath(int sr,int sc,int er, int ec, String ans,int
-    // vis[][],ArrayList<String> temp){
-    // if(sr == er && sc == ec){
-    // System.out.println(ans);
-    // temp.add(ans);
-    // return;
-    // }
-    // vis[sr][sc] = 1;
-    // for(int d = 0;d <dirs.length; d++){
-    // int r = sr + dirA[d][0];
-    // int c = sc + dirA[d][1];
-    // if(r <= er && c <= ec && r>=0 && c >= 0 && vis[r][c] != 1){
-    // mazePath(r,c,er,ec,ans + dirs[d], vis ,temp);
-    // }
+    static String diRs[] = {"N","ne","E","es","S","ws","W","nw"};
+    static int diRA[][] = {{-1,0},{-1,1},
+    {0,1},{1,1},{1,0},{1,-1},{0,-1},{-1,-1}};
+    public static void mazePath(int sr,int sc,int er, int ec, String ans,int
+    vis[][],ArrayList<String> temp){
+    if(sr == er && sc == ec){
+    System.out.println(ans);
+    temp.add(ans);
+    return;
+    }
+    vis[sr][sc] = 1;
+    for(int d = 0;d <dirs.length; d++){
+    int r = sr + dirA[d][0];
+    int c = sc + dirA[d][1];
+    if(r <= er && c <= ec && r>=0 && c >= 0 && vis[r][c] != 1){
+    mazePath(r,c,er,ec,ans + dirs[d], vis ,temp);
+    }
 
-    // }
-    // vis[sr][sc]=0;
-    // }
+    }
+    vis[sr][sc]=0;
+    }
 
     // ----------------
-    // public static ArrayList<String> findPath(int[][] m,int n){
-    // String dris[] = {"D", "L", "R", "U"};
-    // int dirA[][] = {{1, 0}, {0, -1}, {0, 1}, {-1, 0}};
+    public static ArrayList<String> findPath(int[][] m,int n){
+    String dris[] = {"D", "L", "R", "U"};
+    int dirA[][] = {{1, 0}, {0, -1}, {0, 1}, {-1, 0}};
 
-    // ArrayList<String> myans = new ArrayList<>();
-    // if(m[0][0] == 0 || m[n-1][n-1] == 0){
-    // return myans;
-    // }
+    ArrayList<String> myans = new ArrayList<>();
+    if(m[0][0] == 0 || m[n-1][n-1] == 0){
+    return myans;
+    }
 
-    // ratRace(0,0,n-1,n-1,"",dirA,dris,m,myans);
+    ratRace(0,0,n-1,n-1,"",dirA,dris,m,myans);
 
-    // }
+    }
 
-    // public static void ratRace(int sr, int sc, int er, int ec, String ans, int
-    // dirA[][], String[] dris, int vis[][], ArrayList<String> myans) {
-    // if (sr == er && sc == ec) {
-    // myans.add(ans);
-    // return;
-    // }
+    public static void ratRace(int sr, int sc, int er, int ec, String ans, int
+    dirA[][], String[] dris, int vis[][], ArrayList<String> myans) {
+    if (sr == er && sc == ec) {
+    myans.add(ans);
+    return;
+    }
 
-    // int temp = vis[sr][sc];
-    // vis[sr][sc] = -1;
+    int temp = vis[sr][sc];
+    vis[sr][sc] = -1;
 
-    // for (int i = 0; i < dris.length; i++) {
-    // int r = sr + dirA[i][0];
-    // int c = sc + dirA[i][1];
+    for (int i = 0; i < dris.length; i++) {
+    int r = sr + dirA[i][0];
+    int c = sc + dirA[i][1];
 
-    // if (r >= 0 && c >= 0 && r <= er && c <= ec && vis[r][c] != 0) {
-    // if (vis[r][c] != -1) {
-    // ratRace(r, c, er, ec, ans + dris[i], dirA, dris, vis, myans);
-    // }
-    // }
-    // }
-    // vis[sr][sc] = temp;
-    // }
+    if (r >= 0 && c >= 0 && r <= er && c <= ec && vis[r][c] != 0) {
+    if (vis[r][c] != -1) {
+    ratRace(r, c, er, ec, ans + dris[i], dirA, dris, vis, myans);
+    }
+    }
+    }
+    vis[sr][sc] = temp;
+    }
 
     // -------1 to n (jump)-------
-    // static int count = 0;
-    // static int n = 0;
-    // static String dirs[] = {"N","R","E","D","S","L","W","U"};
-    // static int dirA[][] = {{-1,0},{-1,1},
-    // {0,1},{1,1},{1,0},{1,-1},{0,-1},{-1,-1}};
-    // public static void mazePath(int sr,int sc,int er, int ec, String ans,int
-    // vis[][],ArrayList<String> temp){
-    // count++;
-    // if(sr == er && sc == ec){
-    // System.out.println(ans);
-    // temp.add(ans);
-    // return;
-    // }
-    // if(er > ec){
-    // n=er;
-    // }
-    // else{
-    // n=ec;
-    // }
-    // vis[sr][sc] = 1;
-    // for(int d = 0;d <dirs.length; d++){
-    // for(int jump = 1; jump <= n; jump++){
-    // int r = sr + dirA[d][0] * jump;
-    // int c = sc + dirA[d][1] * jump;
-    // if(r <= er && c <= ec && r>=0 && c >= 0 ){
-    // if(vis[r][c] != 1){
-    // mazePath(r,c,er,ec,ans + dirs[d] + "" + jump, vis ,temp);
-    // }
-    // }
-    // else{
-    // break;
-    // }
-    // }
-    // }
-    // vis[sr][sc]=0;
-    // }
+    static int count = 0;
+    static int n = 0;
+    static String dirs[] = {"N","R","E","D","S","L","W","U"};
+    static int DirA[][] = {{-1,0},{-1,1},
+    {0,1},{1,1},{1,0},{1,-1},{0,-1},{-1,-1}};
+    public static void mazePath(int sr,int sc,int er, int ec, String ans,intvis[][],ArrayList<String> temp){
+    count++;
+    if(sr == er && sc == ec){
+    System.out.println(ans);
+    temp.add(ans);
+    return;
+    }
+    if(er > ec){
+    n=er;
+    }
+    else{
+    n=ec;
+    }
+    vis[sr][sc] = 1;
+    for(int d = 0;d <dirs.length; d++){
+    for(int jump = 1; jump <= n; jump++){
+    int r = sr + dirA[d][0] * jump;
+    int c = sc + dirA[d][1] * jump;
+    if(r <= er && c <= ec && r>=0 && c >= 0 ){
+    if(vis[r][c] != 1){
+    mazePath(r,c,er,ec,ans + dirs[d] + "" + jump, vis ,temp);
+    }
+    }
+    else{
+    break;
+    }
+    }
+    }
+    vis[sr][sc]=0;
+    }
     // --------array jumps------------
-    // public static void mpArrayJump(int sr,int sc,int er,int ec,String ans,int
-    // vis[][],int given[][],int dirA [][],String dirs[],ArrayList<String> result){
-    // if(sr == er && sc == ec){
-    // System.out.println(ans);
-    // result.add(ans);
-    // return;
-    // }
-    // vis[sr][sc] = 1;
-    // int temp = given[sr][sc];
+    public static void mpArrayJump(int sr,int sc,int er,int ec,String ans,int
+    vis[][],int given[][],int dirA [][],String dirs[],ArrayList<String> result){
+    if(sr == er && sc == ec){
+    System.out.println(ans);
+    result.add(ans);
+    return;
+    }
+    vis[sr][sc] = 1;
+    int temp = given[sr][sc];
 
-    // for(int d = 0;d <dirs.length; d++){
-    // for(int jump = 1; jump <= temp; jump++){
-    // int r = sr + dirA[d][0] * jump;
-    // int c = sc + dirA[d][1] * jump;
-    // if(r <= er && c <= ec && r>=0 && c >= 0 ){
-    // if(vis[r][c] != 1){
-    // mpArrayJump(r, c, er, ec, ans + dirs[d] + "" + jump, vis, given, dirA,
-    // dirs,result);
-    // }
-    // }
-    // }
-    // }
+    for(int d = 0;d <dirs.length; d++){
+    for(int jump = 1; jump <= temp; jump++){
+    int r = sr + dirA[d][0] * jump;
+    int c = sc + dirA[d][1] * jump;
+    if(r <= er && c <= ec && r>=0 && c >= 0 ){
+    if(vis[r][c] != 1){
+    mpArrayJump(r, c, er, ec, ans + dirs[d] + "" + jump, vis, given, dirA,
+    dirs,result);
+    }
+    }
+    }
+    }
 
-    // vis[sr][sc]=0;
+    vis[sr][sc]=0;
 
-    // }
-    // public static void display(int arr[][]) {
-    // for (int i = 0; i < arr.length; i++) {
-    // for (int j = 0; j < arr[i].length; j++) {
-    // System.out.print(arr[i][j] + " ");
-    // }
-    // System.out.println();
-    // }
+    }
+    //----------
+    public static void display(int arr[][]) {
+    for (int i = 0; i < arr.length; i++) {
+    for (int j = 0; j < arr[i].length; j++) {
+    System.out.print(arr[i][j] + " ");
+    }
+    System.out.println();
+    }
 
-    // }
-    // public static int[][] mpArrayJump2(int sr,int sc,int er,int ec,String ans,int
-    // vis[][],int given[][],int dirA [][],String dirs[],ArrayList<String> result){
-    // if(sr == er && sc == ec){
-    // System.out.println(ans);
-    // result.add(ans);
-    // vis[sr][sc] = 1;
-    // int myans[][] = new int[er+1][ec+1];
-    // for (int i = 0; i < myans.length; i++) {
-    // for (int j = 0; j < myans[i].length; j++) {
-    // myans[i][j] = vis[i][j];
-    // System.out.println(vis[i][j]);
-    // }
-    // }
-    // display(myans);
-    // // display(vis);
-    // vis[sr][sc] = 0;
-    // // return vis;
-    // return myans;
-    // }
-    // vis[sr][sc] = 1;
-    // int temp = given[sr][sc];
-    // int tempvar[][] = new int[er+1][ec+1];
-    // for(int d = 0;d <dirs.length; d++){
-    // for(int jump = 1; jump <= temp; jump++){
-    // int r = sr + dirA[d][0] * jump;
-    // int c = sc + dirA[d][1] * jump;
-    // if(r <= er && c <= ec && r>=0 && c >= 0 ){
-    // if(vis[r][c] != 1){
-    // tempvar = mpArrayJump2(r, c, er, ec, ans + dirs[d] + "" + jump, vis, given,
-    // dirA, dirs,result);
-    // }
-    // else{
-    // break;
-    // }
-    // }
-    // }
-    // }
+    }
+    public static int[][] mpArrayJump2(int sr,int sc,int er,int ec,String ans,int
+    vis[][],int given[][],int dirA [][],String dirs[],ArrayList<String> result){
+    if(sr == er && sc == ec){
+    System.out.println(ans);
+    result.add(ans);
+    vis[sr][sc] = 1;
+    int myans[][] = new int[er+1][ec+1];
+    for (int i = 0; i < myans.length; i++) {
+    for (int j = 0; j < myans[i].length; j++) {
+    myans[i][j] = vis[i][j];
+    System.out.println(vis[i][j]);
+    }
+    }
+    display(myans);
+    // display(vis);
+    vis[sr][sc] = 0;
+    // return vis;
+    return myans;
+    }
+    vis[sr][sc] = 1;
+    int temp = given[sr][sc];
+    int tempvar[][] = new int[er+1][ec+1];
+    for(int d = 0;d <dirs.length; d++){
+    for(int jump = 1; jump <= temp; jump++){
+    int r = sr + dirA[d][0] * jump;
+    int c = sc + dirA[d][1] * jump;
+    if(r <= er && c <= ec && r>=0 && c >= 0 ){
+    if(vis[r][c] != 1){
+    tempvar = mpArrayJump2(r, c, er, ec, ans + dirs[d] + "" + jump, vis, given,
+    dirA, dirs,result);
+    }
+    else{
+    break;
+    }
+    }
+    }
+    }
 
-    // vis[sr][sc]=0;
-    // return tempvar;
-    // }
+    vis[sr][sc]=0;
+    return tempvar;
+    }
 
-    // static class Path {
-    //     String longestPath;
-    //     int longestPathlength;
-    //     String shortestPath;
-    //     int shortestPathlength;
-    //     int[][] longestPathco;
-    //     int[][] shorttestPathco;
-    // }
-
-    // public static int[][] copyArray(int vis[][]) {
-
-    //     int row = vis.length;
-    //     int col = vis[0].length;
-    //     int ans[][] = new int[row][col];
-
-    //     for (int i = 0; i < row; i++) {
-    //         for (int j = 0; j < col; j++) {
-    //             ans[i][j] = vis[i][j];
-    //         }
-    //     }
-    //     return ans;
-    // }
-
-    // static String dris[] = { "D", "L", "R", "U" };
-    // static int dirA[][] = { { 1, 0 }, { 0, -1 }, { 0, 1 }, { -1, 0 } };
-
-    // public static Path mpArrayJump(int sr, int sc, int er, int ec, String ans, int given[][], int vis[][]) {
-    //     if (sr == er && sc == ec) {
-    //         System.out.println(ans);
-    //         Path p = new Path();
-    //         p.longestPath = ans;
-    //         p.shortestPath = ans;
-    //         p.longestPathlength = ans.length();
-    //         p.shortestPathlength = ans.length();
-    //         p.longestPathco = copyArray(vis);
-    //         p.shorttestPathco = copyArray(vis);
-    //         return p;
-    //     }
-    //     int maxJump = given[sr][sc];
-    //     given[sr][sc] = -1;
-    //     vis[sr][sc] = 1;
-
-    //     Path myPath = new Path();
-    //     myPath.longestPathco = new int[er + 1][ec + 1];
-    //     myPath.shorttestPathco = new int[er + 1][ec + 1];
-    //     myPath.shortestPathlength = (int) 1e9;
-    //     myPath.longestPathlength = -(int) 1e9;
-    //     myPath.shortestPath = "";
-    //     myPath.longestPath = "";
-
-    //     for (int i = 0; i < dris.length; i++) {
-    //         for (int jump = 1; jump <= maxJump; jump++) {
-    //             int r = sr + jump * dirA[i][0];
-    //             int c = sc + jump * dirA[i][1];
-
-    //             if (r >= 0 && c >= 0 && r <= er && c <= ec) {
-    //                 if (given[r][c] > 0) {
-    //                     Path tempans = mpArrayJump(r, c, er, ec, ans + "" + dris[i] + "" + jump, given, vis);
-    //                     if (tempans.longestPathlength > myPath.longestPathlength) {
-    //                         myPath.longestPath = tempans.longestPath;
-    //                         myPath.longestPathco = tempans.longestPathco;
-    //                         myPath.longestPathlength = tempans.longestPathlength;
-    //                     }
-    //                     if (tempans.shortestPathlength < myPath.shortestPathlength) {
-    //                         myPath.shortestPath = tempans.shortestPath;
-    //                         myPath.shorttestPathco = tempans.shorttestPathco;
-    //                         myPath.shortestPathlength = tempans.shortestPathlength;
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     given[sr][sc] = maxJump;
-    //     vis[sr][sc] = 0;
-    //     return myPath;
-    // }
+    //--------
     static class Path {
+        String longestPath;
+        int longestPathlength;
+        String shortestPath;
+        int shortestPathlength;
+        int[][] longestPathco;
+        int[][] shorttestPathco;
+    }
+
+    public static int[][] copyArray(int vis[][]) {
+
+        int row = vis.length;
+        int col = vis[0].length;
+        int ans[][] = new int[row][col];
+
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                ans[i][j] = vis[i][j];
+            }
+        }
+        return ans;
+    }
+
+    static String dris[] = { "D", "L", "R", "U" };
+    static int dirA[][] = { { 1, 0 }, { 0, -1 }, { 0, 1 }, { -1, 0 } };
+
+    public static Path mpArrayJump(int sr, int sc, int er, int ec, String ans, int given[][], int vis[][]) {
+        if (sr == er && sc == ec) {
+            System.out.println(ans);
+            Path p = new Path();
+            p.longestPath = ans;
+            p.shortestPath = ans;
+            p.longestPathlength = ans.length();
+            p.shortestPathlength = ans.length();
+            p.longestPathco = copyArray(vis);
+            p.shorttestPathco = copyArray(vis);
+            return p;
+        }
+        int maxJump = given[sr][sc];
+        given[sr][sc] = -1;
+        vis[sr][sc] = 1;
+
+        Path myPath = new Path();
+        myPath.longestPathco = new int[er + 1][ec + 1];
+        myPath.shorttestPathco = new int[er + 1][ec + 1];
+        myPath.shortestPathlength = (int) 1e9;
+        myPath.longestPathlength = -(int) 1e9;
+        myPath.shortestPath = "";
+        myPath.longestPath = "";
+
+        for (int i = 0; i < dris.length; i++) {
+            for (int jump = 1; jump <= maxJump; jump++) {
+                int r = sr + jump * dirA[i][0];
+                int c = sc + jump * dirA[i][1];
+
+                if (r >= 0 && c >= 0 && r <= er && c <= ec) {
+                    if (given[r][c] > 0) {
+                        Path tempans = mpArrayJump(r, c, er, ec, ans + "" + dris[i] + "" + jump, given, vis);
+                        if (tempans.longestPathlength > myPath.longestPathlength) {
+                            myPath.longestPath = tempans.longestPath;
+                            myPath.longestPathco = tempans.longestPathco;
+                            myPath.longestPathlength = tempans.longestPathlength;
+                        }
+                        if (tempans.shortestPathlength < myPath.shortestPathlength) {
+                            myPath.shortestPath = tempans.shortestPath;
+                            myPath.shorttestPathco = tempans.shorttestPathco;
+                            myPath.shortestPathlength = tempans.shortestPathlength;
+                        }
+                    }
+                }
+            }
+        }
+        given[sr][sc] = maxJump;
+        vis[sr][sc] = 0;
+        return myPath;
+    }
+    //---find all longest and shortest path
+        static class Path {
         String longestPath;
         int longestPathlength;
         String shortestPath;
@@ -480,7 +480,7 @@ public class L001 {
     static String dris[] = { "D", "L", "R", "U" };
     static int dirA[][] = { { 1, 0 }, { 0, -1 }, { 0, 1 }, { -1, 0 } };
 
-    public static Path mpArrayJump(int sr, int sc, int er, int ec, String ans, int given[][], int vis[][]) {
+    public static Path mpArrayJump1(int sr, int sc, int er, int ec, String ans, int given[][], int vis[][]) {
         ArrayList<Path> shortestPaths = new ArrayList<>();        
         if (sr == er && sc == ec) {
             //System.out.println(ans);
@@ -525,8 +525,8 @@ public class L001 {
                             myPath.shortestPathlength = tempans.shortestPathlength;
                         }
                         else if(tempans.shortestPathlength == myPath.shortestPathlength) {
-                            String st = tempans.shortestPath.get(0);
-                            myPath.shortestPaths.add(st);
+                            //String st = tempans.shortestPath.get(0);
+                           // myPath.shortestPaths.add(st);
                         }
                     }
                 }
@@ -605,13 +605,14 @@ public class L001 {
         Path result = mpArrayJump(0, 0, 3, 3, "", given, vis);
         System.out.println("Longest Path: " + result.longestPath);
         System.out.println("Shortest Path: " + result.shortestPath);
-        System.out.println("Longest Path: " + result.longestPath.length());
-        System.out.println("Shortest Path: " + result.shortestPath.length());     
+
+        Path result1 = mpArrayJump1(0, 0, 3, 3, "", given, vis);
+        System.out.println("Longest Path: " + result1.longestPath);
+        System.out.println("Shortest Path: " + result1.shortestPath);
+        System.out.println("Longest Path: " + result1.longestPath.length());
+        System.out.println("Shortest Path: " + result1.shortestPath.length());     
         
-        System.out.println("All shortest paths");
-        for(String path : result.shortestPaths){
-            System.out.println(path);
-        }
+       
 
         // int[][] maze = {
         // {1,0,0,0},
